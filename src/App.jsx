@@ -1,8 +1,11 @@
 import Footer from './components/Footer'
 import Header from './components/Header'
 import PokemonContent from './components/PokemonContent'
+import LoadingPage from './components/LoadingPage'
 import { usePokemon } from './hooks/usePokemon'
-import pokeball from './assets/pokeball.png'
+
+import ScrollToTop from 'react-scroll-to-top'
+
 const App = () => {
   const { filterName, filterType, orderPokemons, isLoading, pokemon } =
     usePokemon()
@@ -14,21 +17,19 @@ const App = () => {
         filterType={filterType}
         orderPokemons={orderPokemons}
       />
+
       {/* Shows loading if content is not ready */}
-      {!isLoading ? (
-        <PokemonContent pokemon={pokemon} />
-      ) : (
-        <div
-          style={{
-            textShadow: '1px 1px #000',
-          }}
-          className='w-full h-full flex justify-center items-center'>
-          <img
-            src={pokeball}
-            className='animate-spin w-24 md:w-72'
-          />
-        </div>
-      )}
+      {!isLoading ? <PokemonContent pokemon={pokemon} /> : <LoadingPage />}
+
+      {/* Scrolls to the top */}
+      <ScrollToTop
+        smooth
+        color='white'
+        className='opacity-50 hover:opacity-100 
+        bg-[#4B70BE] flex justify-center items-center 
+        right-3 bottom-3 rounded-full'
+      />
+
       <Footer />
     </>
   )

@@ -10,9 +10,9 @@ body {
     min-height: 100vh;
 }
 
-body::-webkit-scrollbar{
+/* body::-webkit-scrollbar{
     display: none;
-}
+} */
 
 @tailwind base;
 @tailwind components;
